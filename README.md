@@ -279,4 +279,40 @@ Flop ratio = Number of D Flip flops = 1596  = 0.1579
 
 
 </details>
+<details>
+  <summary>Library binding and Placement</summary>
+
+  ### Placement
+
+  In this step of OpenLANE ASIC flow,The synthesized netlist is to be placed on the floorplan.It occurs in two 
+  stages:
+  1. Global Placement
+  2. Detailed Placement
+
+  **Global Placement** finds optimal position for all cells which may be not legal at the time and overlap.<br />
+  **Detailed Placemnent** changes this particular placement and make it legal.It is important from a timing point 
+  of view<br />
+
+  ### Running Placement on OpenLANE
+
+  Here we are going to run placement and view the new layout on magic.<br />
+  We are going to use the below command to run placement, in OpenLANE.<br />
+  ```
+  run_placement
+  ```
+  ![Screenshot from 2023-09-10 22-47-32](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/4bd0174a-c627-4c26-a0ca-5b791062860b)
+
+  After which we change directory to results/placement.<br />
+  Inside the directory we run the following command for executing magic.<br /> 
+  ```
+  magic -T /home/emil/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read
+  picorv32.def &
+  ```
+  The below  is the screen shot in magic.<br />
+  ![Screenshot from 2023-09-10 22-49-32](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/e443a681-8f32-41c0-9d46-36b5f4a2fa76)
+
+  ![Screenshot from 2023-09-10 22-50-31](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/8bbf39a7-8e08-48aa-ade1-857f49865cdb)
+
+  
+</details>
 
