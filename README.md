@@ -93,6 +93,85 @@ and other integrated circuits, leveraging the foundry's unique manufacturing pro
 The below photo illustrates the various open source tools that can be used in designing ASIC's.<br />
 ![Screenshot from 2023-09-10 12-12-20](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/67db0ed2-7876-4948-8a96-3c9a08623d9a)
 
+<br />
+The simplified flow from RTL to GDSII is shown below.<br />
+
+![Screenshot from 2023-09-10 12-43-01](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/0ca47cf7-6c04-48b2-b908-d9cb4b879205)
+
+Following are the various step shown in the above figure to convert RTL to GDSII
+
+- **Synthesis**: Synthesis involves the process of translating a high-level hardware description of a digital circuit into a Register-Transfer Level representation, which is a lower-level and more hardware-      oriented description of the same circuit.
+
+- **Floor & Power Planning**: Floor planning and power planning are essential steps in the design and layout of an Application-Specific Integrated Circuit (ASIC). They involve the physical organization and allocation of resources within the chip to meet performance, power, and area requirements
+  - Chip floor planning : involves strategically organizing and allocating the available silicon area on a chip to accommodate various functional blocks.
+  - Macro floor planning : specific aspect of the chip floor planning process that focuses on the organization and placement of large functional blocks, often referred to as macros or IP (Intellectual Property) blocks, within an integrated circuit (IC) design. 
+  - Power Planning :  It involves the strategic distribution and management of power supply and ground connections within the chip to ensure proper power delivery, minimize voltage drop, and control power consumption.
+
+- **Placement**: process of determining the physical location of various functional blocks and components on the silicon die of the chip. 
+  - Global Placement: It involves determining the approximate positions of all the functional blocks and components on the chip's silicon die. Global placement sets the initial arrangement of these blocks.
+  - Detailed Placement: Detailed placement aims to meet stringent design constraints, optimize chip area utilization, and minimize wirelength to ensure the chip's performance, power efficiency, and manufacturability.
+
+- **Clock Tree Synthesis**: CTS, or clock tree synthesis, involves creating a clock distribution network to guarantee that clock signals reach all sequential elements, like flip-flops, in a synchronized manner. Adequate CTS is essential to uphold timing requirements.
+  
+-  **Routing**: process of creating the physical interconnections or paths that allow electrical signals to flow between various components, such as gates, flip-flops, and memory elements, on a silicon die.
+
+- **Signoff**: After placement and routing,detailed design rule checking (DRC) and final verification is done to ensure the layout complies with fabrication constraints and meets specified requirements for timing, area, and power.
+
+## OpenLANE
+
+OpenLane is a fully automated process, spanning from RTL (Register-Transfer Level) to GDSII (Graphics Data System II), and relies on various components, including OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, KLayout, and a set of specialized scripts for design exploration and enhancement. This comprehensive flow covers every step of ASIC implementation.
+<br />
+
+OpenLANE utilises a variety of opensource tools in the execution of the ASIC flow:
+- RTL Synthesis & Technology Mapping: yosys,abc
+- Floorplan & PDN:init_fp, ioPlacer, pdn and tapcell
+- Placement:RePLace, Resizer, OpenPhySyn & OpenDP
+- Static Timing Analysis:OpenSTA
+- Clock Tree Synthesis:TritonCTS
+- Routing:FastRoute and TritonRoute
+- SPEF Extraction:SPEF-Extractor
+- DRC Checks, GDSII Streaming out:Magic, Klayout
+- LVS check:Netgen
+- Circuit validity checker:CVC
+
+More info can be obtained from [here](https://github.com/The-OpenROAD-Project/OpenLane)
+<br />
+
+### Invoking OpenLANE
+
+```
+cd OpenLane
+make mount
+```
+Inside the openlane container
+```
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+```
+![Screenshot from 2023-09-10 13-20-32](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/a16a15a4-544a-4eca-a558-23e8e27447c4)
+
+![Screenshot from 2023-09-10 13-28-12](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/1148cc75-75a9-4365-b2cc-7f63634a8f77)
+
+The netlist generated is shown below:<br />
+```
+cd OpenLane/designs/picorv32a/runs/RUN_2023.09.10_07.47.37/results/synthesis/
+gvim picorv32.v
+```
+![Screenshot from 2023-09-10 13-34-48](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2085f6aa-42aa-4de4-9af3-70fa8fa8c641)
+
+To view report:<br/>
+```
+cd OpenLane/designs/picorv32a/runs/RUN_2023.09.10_07.47.37/reports/synthesis/
+gvim 1-synthesis.AREA_0.stat.rpt
+```
+
+![Screenshot from 2023-09-10 13-37-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/bcbe3d1d-be23-4d7d-b585-bd92ea798e74)
+
+
+
+
 </details>
 
 
