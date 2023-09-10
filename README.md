@@ -1,4 +1,5 @@
 # Advanced_Physical_Design_using_OpenLANE-Sky130
+This repository is made to document the coursework done under Kunal Ghosh for ASICs and covers Advanced Physical Design using OpenLane and Sky130.
 
 ## Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
 <details>
@@ -170,8 +171,112 @@ gvim 1-synthesis.AREA_0.stat.rpt
 ![Screenshot from 2023-09-10 13-37-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/bcbe3d1d-be23-4d7d-b585-bd92ea798e74)
 
 
-
+```
+Flop ratio = Number of D Flip flops = 1596  = 0.1579
+             ______________________   _____
+             Total Number of cells    10104
+```
 
 </details>
 
+## Day 2: Good floorplan vs. Bad floorplan and introduction to library cells
+<details>
+  <summary>Chip floorplanning and considerations</summary>
+
+  ### Floorplan considerations
+
+  There are certain factors that we have to take into consideration when doing floorplanning.Such as:
+  
+  - Utilization factor and Aspect Ratio
+  - Define locations of preplaced cells
+  - Decoupling capacitors
+  - Power Planning
+  - Pin Placement
+
+    ### Utilization Factor & Aspect Ratio
+
+    The utilization factor, also known as the area utilization factor or chip utilization factor, is a measure of
+    how efficiently the silicon area on a chip is being used for active components (logic gates, memory cells,
+    etc.) compared to the total available area.
+    <br />
+    A Utilisation Factor of 1 signifies 100% utilisation leaving no space for extra cells such as buffer. However,
+    practically, the Utilisation Factor is 0.5-0.6. Likewise, an Aspect ratio of 1 implies that the chip is square
+    shaped. Any value other than 1 implies rectanglular chip.
+
+    ```
+    Utilisation Factor =  Area occupied by netlist
+                         __________________________
+                            Total area of core
+    ```
+
+    The aspect ratio in ASIC design is a measure of the chip's physical shape, specifically the ratio of its width
+    to its height. It is often used in the context of standard cell libraries and the dimensions of the chip's core
+    area. The aspect ratio is expressed as:
+
+    ```
+    Aspect Ratio =  Height of the core
+                   _____________________
+                     Width if the core
+    ```
+
+    ### Preplaced cells
+
+    Preplaced cells, also known as predefined cells, are a category of components used in
+    Application-Specific Integrated Circuit (ASIC) and digital integrated circuit design. Unlike standard cells,
+    which are typically placed and routed automatically during the design process, preplaced cells are fixed or
+    manually placed at specific locations on the chip's layout by the designer.Preplaced cells are IPs comprising
+    large combinational logic which once placed maintain a fixed position.
+
+    ### Decoupling capacitors
+
+    The above mentioned preplaced cells must be surrounded with decoupling capacitors.Since the imepedence of the
+    long wire lengths can cause power supply to drop significantly before reaching the logic circuit,leading to the
+    signal not entering the noise margin range.<br />
+    Decoupling capacitors are large capacitors that are charged to power supply voltage and kept close to the logic
+    circuit.**It serves the purpose of decoupling the logic circuit from power supply by providing adequete amount
+    of current to the circuit**.It prevents cross-talk.
+
+    ### Powerplanning
+
+    Unlike preplaced macros,each block on chip cannot have it's own decoupling capacitor. Powerplanning ensures
+    that each block gas its own VDD and VSS pads and ground lines forming a mesh.
+
+    ### Pinplacement
+
+    The space between the core and the chip is allocated for the placement of pins. The connectivity data encoded
+    in either VHDL or Verilog is employed to decide the location of I/O pads for different pins. Subsequently, a
+    logical placement is carried out for pre-placed macros to clearly distinguish that region from the pin area.
+
+    ### Running floorplan using OpenLANE
+
+    After simulation we run picorv32a floorplan using the commnand below:
+
+     ```
+     run_floorplan
+     ```
+     
+     ![Screenshot from 2023-09-10 16-46-57](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/d84821ab-781b-4050-8981-dce01377652c)
+
+    For viewing the floorplan we are using the tool **magic**.<br/>
+    We should move into the directory 'results/floorplan' and use the below command.<br />
+
+    ```
+    magic -T /home/emil/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read picorv32.def &
+    ```
+
+    Here we need to specify the sky130A.tech file directory as well.
+    
+     ![Screenshot from 2023-09-10 17-45-19](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/071b616a-cc25-4d66-8229-db70540b6c51)
+
+    **Basic Magic shortcuts:**
+    - Press 'Z' on keryboard to zoom in.
+    - Press 'V' to center (zoom out fully).
+    - Hover over an element and press 'S' to select it.
+    - After selecting type 'what' in the console window to view it's details.
+  
+    ![Screenshot from 2023-09-10 17-56-07](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/f480cc1a-4b3a-43aa-87c0-d4c87a4abab6)
+
+
+
+</details>
 
