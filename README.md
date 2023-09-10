@@ -22,6 +22,47 @@
   This is basically called RTL implementation and a netlist is being generated. with this, a physical design implementation of the design is generated.<br />
   see more info at : https://github.com/mrdunker/RISC-V_based_MYTH_IIITB/
 </details>
+
+<details>
+  <summary>Communicating with computers</summary>
+
+  ### QFN-48 Package
+  A QFN-48 package is a type of integrated circuit (IC) package that follows the Quad Flat No-Lead (QFN) format and contains 48 leads or pins. This package is characterized by its flat, square or rectangular shape  
+  with no leads protruding from the sides. Instead, the electrical connections are made through small exposed pads on the bottom surface of the package, which are soldered directly onto the circuit board or PCB 
+  (Printed Circuit Board).
+  <br />
+  
+  ![Screenshot from 2023-09-10 12-25-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/8c1bd2a2-0406-4ae9-ae17-2704878f1f00)
+
+  The different componets in a broad view are given below.<br />
+  ### Chip
+  In a QFN-48 package, the chip is attached to the die attach pad, which is the central exposed pad on the bottom surface of the package. This pad provides a mechanical and thermal connection between the chip and 
+  the package. Electrical connections from the chip to the external world are made through the other exposed pads (leads) on the bottom surface of the package.
+  <br />
+  The chip within a QFN-48 package can vary widely in terms of its function, complexity, and manufacturer. It might be a microcontroller, a memory chip, a sensor, or any other type of integrated circuit designed to 
+  perform specific tasks within an electronic system. The QFN-48 package serves to protect, house, and provide electrical connections for the chip, making it suitable for surface-mount assembly onto a printed     
+  circuit board (PCB) in various electronic devices and applications.
+
+  ### Pads
+  A QFN-48 (Quad Flat No-Lead 48) package typically includes 48 pads, which are the exposed metal areas on the bottom surface of the package. These pads serve as the electrical connections between the integrated 
+  circuit (IC) inside the package and the printed circuit board (PCB) on which the QFN-48 package is mounted.
+
+  ### Core
+  The core of the QFN-48 package is the central and most essential part of the package. It houses the semiconductor die or microchip, which contains the electronic circuitry, transistors, and other components 
+  responsible for the device's intended functionality. The core of the QFN-48 package is attached to the die attach pad, which is the central exposed pad on the bottom surface of the package.
+
+  ### Die
+  The die is the heart of the integrated circuit (IC) and contains the actual electronic components, transistors, and circuitry responsible for the device's functionality.
+  The die itself is where all the electronic magic happens. It contains the logic, memory, or other functional components that define the IC's purpose. The QFN-48 package serves to protect the die, provide 
+  electrical connections, and assist in thermal management, making it suitable for surface-mount assembly onto a PCB in various electronic devices and applications.
+  
+<br />
+
+  ![Screenshot from 2023-09-10 12-37-50](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/6f7e960c-bfca-48ac-b755-241359dfd6c6)
+
+  
+  
+</details>
 <details>
   <summary>SoC Design using OpenLane</summary>
   <br />
