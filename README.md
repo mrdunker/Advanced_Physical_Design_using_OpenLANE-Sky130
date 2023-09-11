@@ -395,7 +395,7 @@ All the steps from 1 to 8 are fed into GUNA,which in turn generates timing,noise
 
 </details>
 
-## Day 3 Design Library Cell using magic layout and ngspice Characterizations
+## Day 3: Design Library Cell using magic layout and ngspice Characterizations
 
 <details>
   <summary>CMOS inverter using ngspice simulations</summary>
@@ -412,5 +412,107 @@ All the steps from 1 to 8 are fed into GUNA,which in turn generates timing,noise
   ```
   set ::env(FP_IO_MODE) 2
   ```
+
+### SPICE Deck Creation and Simulation for CMOS inverter
+
+  A SPICE deck includes information about the following:
+  1. Model description
+  2. Netlist description
+  3. Component connectivity
+  4. Component values
+  5. Capacitance load
+  6. Nodes
+  7. Simulation type and parameters
+  8. Libraries included
+
+Before doing a SPICE simulation it is required for us to create a SPICE Deck,which provides information about various things such as:
+1. Component Connectivity - Connectivity of the Vdd, Vss,Vin, substrate. Substrate tunes the threshold voltage of the MOS.
+2. Component values - values of PMOS and NMOS, Output load, Input Gate Voltage, supply voltage.
+3. Node identification
+4. Simulation commands
+5. Model file - This file will have information regarding the NMOS and PMOS paramenters of a particular technology.
+<br />
+In the below figures we can see the variation of waveforms when parameters are varied.<br />
+
+![Screenshot from 2023-09-11 11-30-36](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/ac59fcda-aa48-476c-8988-ed671a166e43)
+
+### CMOS Inverter Switching threshold Vm
+
+It is the point with which the Vin = Vout on the DC transfer chara.<br />
+Here,both transistors will be in saturation region, meaning both will be in the ON condition and 
+there is a high chance of leakage current.Leakage current is the current which may flow directly 
+from VDD to GND.
+
+![Screenshot from 2023-09-11 11-32-38](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/1efd337e-53bd-40cd-9f58-0a57b2779bb8)
+<br />
+Through transient analysis, we calculate the rise and fall delays of the CMOS by SPICE Simulation
+
+### Lab steps to git clone vsdstdcelldesign
+
+We first clone the mag files and spice models of invertoer,pmos and nmos sky130 using the github link below.<br />
+Cloning is done inside the openlane folder.<br />
+
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+```
+After cloning we are required to copy also the tech file into **vsdstdcelldesign** directory.
+<br />
+Then we run the magic command as shown below to get the layout.<br />
+
+```
+magic -T sky130A.tech sky130_inv.mag &
+```
+![Screenshot from 2023-09-11 12-02-21](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/cffbe0a7-fd3a-4e13-bb15-9b4877e90d45)
+
+</details>
+
+<details>
+  <summary>Inception of Layout and CMOS Fabrication Process </summary>
+
+  ### 16-Mask CMOS Fabrication
+
+  16-Mask CMOS Fabrication encompasses several critical phases for crafting integrated circuits.<br />
+
+  1. Substrate Selection.<br />
+       This is the most initial phase of the process where the subrstrate is chosen.Here we are chosing a p-substrate.<br />
+![Screenshot from 2023-09-11 12-47-12](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/56bccff0-3aa0-4d05-8449-ccbf714f1ce2)
+
+  3. Active region creation.<br />
+      This is done to isolate the active regions for transistors, the process begins with the deposition of SiO2 and Si3N4 layers, followed by photolithography and silicon nitride etching.This is also known as LOCOS (Local Oxidation of Silicon),where oxide is grown in certain regions. The Si3N4 layer is removed using hot H2SO4.<br />
+        ![Screenshot from 2023-09-11 12-15-33](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/55adbf62-1aac-4281-9ea8-cccda07d10a1)
+
+  4. N-Well and P-Well Formation.<br />
+     The N-well and P-well regions are created separately.Ion implanation by Boron for P-well and by Phosphorous for N-well formation.High-temperature furnace processes drive-in diffusion to establish well depths, known as the tub process.<br />
+
+![Screenshot from 2023-09-11 12-16-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/4853603c-08da-4d8c-8e63-8d42fbd96482)
+
+  4. Gate Formation.<br />
+     The gate is a very important CMOS transistor terminal that controls threshold voltages for transistor switching. NMOS and PMOS gates formed by photolithography techniques.Important parameters for gate formation include oxide capacitance and doping concentration.<br />
+     
+![Screenshot from 2023-09-11 12-18-13](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/74677788-550a-42bc-8b03-5072d93917f0)
+
+
+  5. Lightly dopped Drain(LDD).<br />
+     LDD formed to avoid the hot electron effect.<br />
+ 
+![Screenshot from 2023-09-11 12-19-38](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/05c59b5f-5b14-4f76-84a5-e950b24c3505)
+
+
+  6. Source and Drain Formation.<br />
+      Screen oxide added to avoid channelling during implants followed by Aresenic implantation and high temperature annealing.<br />
+      
+![Screenshot from 2023-09-11 12-20-39](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/ae05225f-4262-4b8a-a237-855db1f2d15d)
+
+  7. Local Interconnect Formation.<br />
+     Removal of screen oxide by HF etching and deposition of Ti for low resistant contacts is done.Heat treatment results in chemical reactions, producing low-resistant titanium silicon dioxide for interconnect contacts and titanium nitride for top-level connections, enabling local communication.
+
+  ![Screenshot from 2023-09-11 12-21-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/0bdb74ca-dffb-4a91-8dc2-5024cb82b86a)
+
+  8. Higher Level Metal Formation.<br />
+     Chemical Mechanical Polishing (CMP) is utilized by doping silicon oxide with Boron or Phosphorus to achieve surface planarization.This is followed up by TiN and Tungsten deposition.An aluminum (Al) layer is added and subjected to photolithography and CMP.This is the first interconnect and addditional interconnect layers can be added on top to reach higher level of metal layers.<br />
+     At the end a dielectric layer usually Si3N4 is added ontop to protect the chip.<br />
+     
+![Screenshot from 2023-09-11 12-22-30](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2255d6c2-6348-40b0-913a-55997138e106)
+
 
 </details>
