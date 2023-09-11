@@ -316,3 +316,101 @@ Flop ratio = Number of D Flip flops = 1596  = 0.1579
   
 </details>
 
+<details>
+<summary>Cell Design and Characteristic Flow</summary>
+
+  ### Standard Cell Design Flow
+The standard cell design flow in ASIC involves iterative processes, and each step must be 
+carefully executed to ensure a successful design that meets the specified requirements within 
+the constraints of the target technology node.
+
+Standard cell design flow involves the fillowing:
+1. Process Design Kits (PDKs), Design Rule Checking (DRC) and Layout vs. Schematic (LVS) guidelines, SPICE models, libraries, and user-defined specifications.
+2. Circuit design, Layout design (Art of layout Euler's path and stick diagram), Extraction of parasitics, Characterization (timing, noise, power).
+3. CDL (circuit description language), LEF, GDSII, extracted SPICE netlist (.cir), timing, noise and power .lib files.
+
+  ### Standard Cell Characterizarion Flow
+
+The industry-standard process for characterizing standard cells typically consists of the following stages:
+
+1. Read in the models and tech files
+2. Read extracted spice Netlist
+3. Recognise behavior of the cells
+4. Read the subcircuits
+5. Attach power sources
+6. Apply stimulus to characterization setup
+7. Provide neccesary output capacitance loads
+8. Provide neccesary simulation commands
+
+For characterization an opensource software called GUNA is used.<br />
+All the steps from 1 to 8 are fed into GUNA,which in turn generates timing,noise and power models.
+  
+</details>
+
+<details>
+  <summary>Timing characterization paramenters</summary>
+  <br />
+  It is the process of assessing and quantifying the timing behavior of digital logic elements, 
+  such as standard cells or custom-designed blocks, within an integrated circuit. It is a 
+  crucial step to ensure that the ASIC operates correctly and meets the required performance 
+  specifications. 
+  <br />
+
+  ### Timing threshold definitions
+  
+  Timing defintion |	Value
+  -------------- | --------------
+  slew_low_rise_thr	| 20% value
+  slew_high_rise_thr | 80% value
+  slew_low_fall_thr |	20% value
+  slew_high_fall_thr |	80% value
+  in_rise_thr	| 50% value
+  in_fall_thr |	50% value
+  out_rise_thr |	50% value
+  out_fall_thr | 50% value
+
+  ### Propagation Delay
+
+  The time disparity between the moment the changing input attains 50% of its ultimate level and 
+  the instance when the output reaches 50% of its ultimate level can be described as the delay. 
+  If you select inappropriate threshold values, it can result in negative delay values. Even 
+  when appropriate threshold values are chosen, the delay can occasionally be either positive or 
+  negative, influenced by the quality of the signal transition (slew rate).
+
+  ```
+  Propagation delay = time(out_fall_thr) - time(in_rise_thr)
+  ```
+
+  ### Transition Time
+
+ The interval required for the signal to transition between its states is referred to as the 
+ transition time. This time span is typically measured by observing the signal's shift from 10% 
+ to 90% or 20% to 80% of its signal levels.
+
+ ```
+ Rise transition time = time(slew_high_rise_thr) - time(slew_low_rise_thr)
+
+ Low transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
+```
+
+</details>
+
+## Day 3 Design Library Cell using magic layout and ngspice Characterizations
+
+<details>
+  <summary>CMOS inverter using ngspice simulations</summary>
+  <br />
+  NGSpice is an open-source electronic circuit simulator software used for analog, digital, and 
+  mixed-signal electronic circuit simulation. It is part of the larger family of SPICE 
+  (Simulation Program with Integrated Circuit Emphasis) simulators.<br />
+
+  ### IO Placer revision
+  
+  - PnR is a iterative flow and hence, we can make changes to the environment variables in the fly to observe the changes in our design.
+  - If i am required to change pin configuration along the core from randomly placed to some other placement, we use the below command in the openlane interactive window
+
+  ```
+  set ::env(FP_IO_MODE) 2
+  ```
+
+</details>
