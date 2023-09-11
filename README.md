@@ -529,5 +529,54 @@ magic -T sky130A.tech sky130_inv.mag &
   Tech LEF - has information about the Metal layer,DRC etc..<br />
   Marcro LEF - Contains physical information of cell like size, pin,direction.
 
+## Designing standard cell and SPICE extraction in MAGIC
+
+To extract the SPICE we open tkcon window.<br />
+type 'pwd' to check the directory we are extracting to.<br />
+The command 'extract all' is is used to to extract to the directory.<br />
+To create a spice file using the .ext file,the commmands are.<br />
+
+```
+ext2spice cthresh 0 rthresh 0 //mothing is created in the directory with this command
+```
+Which extracts parasatic capacitances.
+<br />
+To create a file in the directory, we use the below command.<br />
+
+```
+ext2spice
+```
+The below screenshot illustrates this.<br />
+![Screenshot from 2023-09-11 14-14-33](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/c23e4109-6b1f-4898-bfc7-5ebc94e6d450)
+
+</details>
+
+<details>
+  <summary>Sky130 Tech file LABS</summary>
+
+  ## Create Final SPICE Deck
+
+  Here we go into the created spice file and make changes to it and simulate.<br />
+  In the spicefile the nmos and pmos model details were defined along with the sub circuit details and the other parasitic capacitance information also.<br />
+
+  We are going to be doing a transient analysis so we make the following changes to it.<br />
+  1. VGND to VSS 0V
+  2. Supply voltage VPWR to GND.
+  3. Sweeping a pulse input.
+  4. We add library files and change the scale to 0.01u
+  5. Add a transient analysis with nessasary stoptime and precision as shown below.
   
+![Screenshot from 2023-09-11 15-28-40](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/06db7f15-cc86-4386-89b0-e73b967d07b3)
+
+
+  ## Using ngspice for SPICE Simulation
+
+  Since the SPICE Deck is done,we runn the simulation using ngspice.<br />
+  
+  ```
+  ngspice sky130_inv.spice
+  ```
+
+  ![Screenshot from 2023-09-11 15-28-08](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/61e448c7-85ed-43e9-9eb1-604ed6b333f7)
+
 </details>
