@@ -514,5 +514,20 @@ magic -T sky130A.tech sky130_inv.mag &
      
 ![Screenshot from 2023-09-11 12-22-30](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2255d6c2-6348-40b0-913a-55997138e106)
 
+## Introduction to SKY130 basic layer layout and LEF using inverter
 
+  We can see the layers which are required for CMOS inverter. We also see that the drains of both PMOS and NMOS are connected together.<br />
+  NMOS source connected to ground(VGND), PMOS source is connected to VDD(VPWR).<br />
+  In Sky130 the first layer is called the local interconnect layer or Locali.<br />
+
+  The below screenshot shows the highlighted part in the layout and the same is shown in the tkcon window.<br />
+  ![Screenshot from 2023-09-11 12-56-59](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/10181f6c-9871-45c7-ab67-3dd21ee80b70)
+
+  ### Library exchange format(LEF)
+
+  It is a format that tells us about the boundaries of a cell, the VDD and GND lines. It contains information about the logic of the circuit.<br />
+  Tech LEF - has information about the Metal layer,DRC etc..<br />
+  Marcro LEF - Contains physical information of cell like size, pin,direction.
+
+  
 </details>
