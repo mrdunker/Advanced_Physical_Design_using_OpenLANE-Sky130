@@ -673,7 +673,7 @@ cif see VIA2
 Here we will load the **poly.mag** file into Magic.
 Now we find the error by moving the cursor and find **box** area. We find out that Poly.9 is violated due to the spacing between polyres and poly.We need to fix this.<br />
 
-The polysilicon and polyres distance should be 22u bit is being shown as around 17u,and no errors. So we should go to the syk130 tech file and modify as below.<br />
+The polysilicon and polyres distance should be 22u is being shown as around 17u,and no errors. So we should go to the sky130 tech file and modify as below.<br />
 
 
 ```
