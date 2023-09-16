@@ -751,7 +751,7 @@ cif drcs is a set of rules that check layers exaclty as they appear.There are se
 
 </details>
 
-# Day 4: Pre-layout timing analysis and importance of good clock tree
+## Day 4: Pre-layout timing analysis and importance of good clock tree
 
 <details>
 <summary>Timing modelling using delay tables</summary>
@@ -911,6 +911,43 @@ END sky130_inv
 END LIBRARY
 
 ```
+### Integrating custom cell in OpenLANE
+
+To include the new standard cell in the synthesis, we need to copy the lef file which we have generated to the ```/designs/picorv32a/src``` directory. The **sky130_fd_sc_hd_typical.lib** ,
+**sky130_fd_sc_hd__fast.lib** ,**sky130_fd_sc_hd__slow.lib** file from ```vsdstdcelldesign/libs``` directory needs to be copied to the ```designs/picorv32a/src``` directory.
+
+Now we need to modify the the **config.json** file as shown below.<br />
+
+```
+"PL_RANDOM_GLB_PLACEMENT": 1,
+"PL_TARGET_DENSITY": 0.5,
+"FP_SIZING": "relative",
+"LIB_SYNTH":"dir::src/sky130_fd_sc_hd__typical.lib",
+"LIB_FASTEST":"dir::src/sky130_fd_sc_hd__fast.lib",
+"LIB_SLOWEST":"dir::src/sky130_fd_sc_hd__slow.lib",
+"LIB_TYPICAL":"dir::src/sky130_fd_sc_hd__typical.lib",
+"TEST_EXTERNAL_GLOB":"dir::../picorv32a/src/*",
+"SYNTH_DRIVING_CELL":"sky130_vsdinv"
+```
+
+Now we invoke OpenLANE as usual to integrate the standard cell in the OpenLANE flow.<br />
+Use the following commands in openlane.
+
+```
+prep -design picorv32a 
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+```
+
+![Screenshot from 2023-09-16 17-16-16](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/bb242503-567f-4d38-a03c-f31b30885b03)
+
+Synthesis report:<br />
+![Screenshot from 2023-09-16 17-15-22](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/adc9c1a2-12e9-4a41-927d-d543ca0d7c9b)
+<br />
+
+STA report:<br />
+![Screenshot from 2023-09-16 17-15-50](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/e82efbf3-e060-4ea1-87f8-66a61f61f1a4)
 
 
 
