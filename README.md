@@ -571,12 +571,42 @@ The below screenshot illustrates this.<br />
 
   ## Using ngspice for SPICE Simulation
 
-  Since the SPICE Deck is done,we runn the simulation using ngspice.<br />
+  Since the SPICE Deck is done,we run the simulation using ngspice.<br />
   
   ```
   ngspice sky130_inv.spice
   ```
 
   ![Screenshot from 2023-09-11 15-28-08](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/61e448c7-85ed-43e9-9eb1-604ed6b333f7)
+
+To plot the graph using ngspice we are using the below code after opening ngspice.<br />
+
+```
+plot y vs time a
+```
+The below waveform is plotted hence.<br />
+![Screenshot from 2023-09-16 09-21-04](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/181d7f73-f9d6-4fa5-8c39-5a42399b0713)
+
+The spikes shown in the output(red) are caused due to low load capacitance.We can increase the cap value to sort this out.<br />
+
+### Inverter Standard cell characterization
+
+There are four timing parameters used to characterize the inverter standard cell:
+1. Rise transition - Time taken for the output to rise from 20% to 80% of max value
+2. Fall Transition: Time taken for the output to fall from 80% to 20% of max value
+3. Cell Rise delay: difference in time(50% output rise) to time(50% input fall)
+4. Cell Fall delay: difference in time(50% output fall) to time(50% input rise) 
+<br />
+In the ngspice waveform we can note down the values and calculate the above parameters.<br />
+
+```Rise transition: 2.240 - 2.143 = 0.067ns (67ps)```
+
+```Fall Transition: 4.0921 - 4.049 = 0.0431ns (43.1ps)```
+
+```Cell Rise Delay : 2.17333 - 2.13 = 0.0433ns (43.33ps)```
+
+```Cell Fall Delay : 4.076 - 4.0501 = 0.0259ns (25.9ps)```
+
+
 
 </details>
