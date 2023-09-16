@@ -1116,6 +1116,53 @@ Here also both values are not violating.<br />
 <details>
 <summary>Timing analysis with real clocks</summary>
 
+### Setup Timing Analysis using real clocks
+
+Analyzing setup time is a crucial element of designing digital circuits, especially in 
+synchronous digital systems. It pertains to the duration during which a signal must remain 
+steady and valid prior to the arrival of the clock edge. Guaranteeing the fulfillment of setup 
+time prerequisites is vital for averting data errors and securing the correct functioning of 
+the digital circuit.<br />
+
+![Screenshot from 2023-09-16 22-59-09](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/168624e6-ca84-4ff8-96cb-19502aaffba8)
+
+To ensure the setup time requirements are met we need to make sure of some things:
+1. Selecting proper Filp flops or latches.
+2. Optimize combinational logic
+3. Clock Skew Analysis
+4. Timing constraints
+
+<br />
+Meeting setup time requrirements is cruical for a good digital circuit operation. If not done can result in data errors and multifunctioning of the circuit.
+
+### Holding Timing Analysis using real clock
+
+Analysis of hold time is an equally vital component of digital circuit design, especially in 
+synchronous systems. It concerns the minimum duration during which a data input (D) needs to 
+maintain its stability and validity after the clock edge before any changes can occur. Ensuring 
+that hold time requirements are met is essential to prevent data corruption and ensure the 
+proper operation of digital circuits.<br />
+
+![Screenshot from 2023-09-16 23-03-33](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/499f97b7-df4a-4b45-b6b6-f3beb15621ea)
+
+<br />
+Since, clock is propagated, from this stage, we do timing analysis with real clocks. From now 
+post cts analysis is performed by operoad within the openlane flow
+
+```
+openroad
+read_lef <path of merge.nom.lef>
+read_def <path of def>
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog
+/home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.16_13.22.02/results/synthesis/picorv32a.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+read_sdc /home/emil/OpenLane/designs/picorv32a/src/my_base.sdc
+set_propagated_clock (all_clocks)
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+
+```
 
 </details>
 
