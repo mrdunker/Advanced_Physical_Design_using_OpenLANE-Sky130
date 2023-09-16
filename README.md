@@ -948,7 +948,31 @@ Synthesis report:<br />
 
 STA report:<br />
 ![Screenshot from 2023-09-16 17-15-50](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/e82efbf3-e060-4ea1-87f8-66a61f61f1a4)
+<br />
 
+This is followed by floorplan and placement.
+
+```
+run_floorplan
+run_placement
+```
+To check the layout invoke magic from the directory:
+```/runs/RUN_2023.09.16_11.41.17/ ```
+
+```
+magic -T /home/emil/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read picorv32.def &
+
+```
+
+Below is the output obtained in magic:
+<br />
+
+![Screenshot from 2023-09-16 18-05-01](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/1278d844-c5d7-41df-9032-9100fb07194f)
+
+![Screenshot from 2023-09-16 18-06-17](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/8745804a-68b0-4bd9-b66b-20305965b9e1)
+
+
+### Introduction to Delay tables
 
 
 </details>
