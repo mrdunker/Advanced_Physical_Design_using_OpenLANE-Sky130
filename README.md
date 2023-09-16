@@ -1010,6 +1010,48 @@ buffer, and it possesses its transition delay table.
 
 </details>
 
+<details>
+<summary>Timing analysis with ideal clocks using OpenSTA</summary>
+
+### Post-synthesis timing analysis Using OpenSTA
+
+Timing analysis is carried out outside the OpenLANE flow using OpenSTA tool. For this, 
+pre_sta.conf is required to carry out the STA analysis. Invoke OpenSTA outside the openLANE 
+flow as follows:
+
+```
+sta pre_sta.conf
+
+```
+Since clock tree synthesis has not been performed yet, the analysis is with respect to ideal 
+clocks and only setup time slack is taken into consideration. The slack value is the difference 
+between data required time and data arrival time. The worst slack value must be greater than or 
+equal to zero. If a negative slack is obtained, following steps may be followed:
+1. Change synthesis strategy, synthesis buffering and synthesis sizing values
+2. Review maximum fanout of cells and replace cells with high fanout
+3. sdc file for OpenSTA is modified.
+
+base.sdc is located in vsdstdcelldesigns/extras directory. So, I copied it into our design folder using
+```cp my_base.sdc /home/emil/OpenLane/designs/picorv32a/src/```
+
+Since there were no timing violations, I skipped this step.Since clock is propagated only once 
+we do CTS, In placement stage, clock is considered to be ideal. So only setup slack is taken 
+into consideration before CTS.<br />
+
+The clock is produced by a PLL (Phase-Locked Loop) that contains internal circuits and some 
+logic. The generation of the clock can vary depending on the specific circuit configuration. 
+These variations are collectively referred to as "clock uncertainty." Within clock uncertainty, 
+one of the factors is jitter, which means there's uncertainty about whether the clock will 
+arrive precisely on time without any deviation. This is why it's called "clock uncertainty." 
+Skew, jitter, and margin are all aspects that contribute to this uncertainty in the timing of 
+the clock signal.
+
+```Clock Jitter : deviation of clock edge from its original position```
+
+
+	
+</details>
+
 
 
 
