@@ -750,3 +750,172 @@ DFC full : It checks for the full layout considering it is relatively small.<br 
 cif drcs is a set of rules that check layers exaclty as they appear.There are several of these out of which cifwidthmax with the width of 0 is the most conveinent one to use.<br />
 
 </details>
+
+# Day 4: Pre-layout timing analysis and importance of good clock tree
+
+<details>
+<summary>Timing modelling using delay tables</summary>
+
+## Grid into track info
+
+Track is a path on which metal layers are drawn for routing.It is used to define the height of the standard cell.
+
+Guidelines to be followed while making a standard cell:
+1. Input and output ports must lie on the intersection on Horizontal annd vertical tracks.
+2. Width of standard cell must be in the odd multiple of track pitch & Height in the odd multiple of track height pitch.
+
+The information to get the grids is defined in ```tracks.info```.
+cd to the particular location and open the file.<br />
+
+```
+cd .volare/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info
+
+```
+The content of the file are:
+
+```
+li1 X 0.23 0.46  //0.46um is the width  
+li1 Y 0.17 0.34  //0.34um is the height 
+met1 X 0.17 0.34
+met1 Y 0.17 0.34
+met2 X 0.23 0.46
+met2 Y 0.23 0.46
+met3 X 0.34 0.68
+met3 Y 0.34 0.68
+met4 X 0.46 0.92
+met4 Y 0.46 0.92
+met5 X 1.70 3.40
+met5 Y 1.70 3.40
+```
+
+We iput the below command in the tkcon window to get grid on magic.<br />
+
+```
+grid 0.46um 0.34um 0.23um 0.17um
+```
+![Screenshot from 2023-09-16 14-22-54](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/7e36ff49-628b-4290-a908-6d4028bf71fe)
+
+
+## Create Port Definition
+
+After the layout is made we need to extract the LEF file for the cell. But, certain properties and defenitions have to be set to the pins of the cell which aid the placer and router tool. For LEF files, a cell that contains ports is written as a macro cell,and the ports are the declared PINs of the macro.<br />
+
+Defining port and setting correct class and use attributes to each port is the first step.
+<br />
+We highlight the port that we want to define in magic, Then Edit > Text and change values as below.<br />
+For each layer (to be turned into port), make a box on that particular layer and input a label name along with a sticky label of the layer name with which the port needs to be associated. Ensure the Port enable checkbox is checked and default checkbox is unchecked as shown in the figure:
+
+![Screenshot from 2023-09-16 14-43-12](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/48a231c1-304b-45e5-b4cf-2e815fdef8e1)
+
+![Screenshot from 2023-09-16 14-45-04](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/639090b4-b09f-4f96-92fb-d9a1ccce1e9c)
+
+The same needs to be done for the VPWR and VGND except the Attached to layer must be changed to metal1.<br />
+
+![Screenshot from 2023-09-16 14-56-22](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/72511b42-dcd6-4258-b82e-807c0140a11b)
+
+![Screenshot from 2023-09-16 14-57-02](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/55c95c7e-7271-4bcf-a8e9-0516e796589f)
+
+Before the CMOS Inverter standard cell LEF is extracted,and the purpose of ports must be defined.<br />
+
+Port A:
+```
+port class input
+port use signal
+```
+Port Y:
+```
+port class output
+port class signal
+```
+VPWR area:
+```
+port class inout
+port use power
+```
+VGND area:
+```
+port class inout
+port use ground
+```
+
+The below command is also run on tkcon for extracting LEF file into the same directory.
+```
+lef write // if no name is specified it will be the same name as mag file
+```
+![Screenshot from 2023-09-16 15-14-32](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/64458ba7-cff8-43f3-a436-5077a7913e03)
+
+This creates the file below:<br />
+
+```
+MACRO sky130_inv
+  CLASS CORE ;
+  FOREIGN sky130_inv ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 1.380 BY 2.720 ;
+  SITE unithd ;
+  PIN A
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.165600 ;
+    PORT
+      LAYER li1 ;
+        RECT 0.060 1.180 0.510 1.690 ;
+    END
+  END A
+  PIN Y
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.287800 ;
+    PORT
+      LAYER li1 ;
+        RECT 0.760 1.960 1.100 2.330 ;
+        RECT 0.880 1.690 1.050 1.960 ;
+        RECT 0.880 1.180 1.330 1.690 ;
+        RECT 0.880 0.760 1.050 1.180 ;
+        RECT 0.780 0.410 1.130 0.760 ;
+    END
+  END Y
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER nwell ;
+        RECT -0.200 1.140 1.570 3.040 ;
+      LAYER li1 ;
+        RECT -0.200 2.580 1.430 2.900 ;
+        RECT 0.180 2.330 0.350 2.580 ;
+        RECT 0.100 1.970 0.440 2.330 ;
+      LAYER mcon ;
+        RECT 0.230 2.640 0.400 2.810 ;
+        RECT 1.000 2.650 1.170 2.820 ;
+      LAYER met1 ;
+        RECT -0.200 2.480 1.570 2.960 ;
+    END
+  END VPWR
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER li1 ;
+        RECT 0.100 0.410 0.450 0.760 ;
+        RECT 0.150 0.210 0.380 0.410 ;
+        RECT 0.000 -0.150 1.460 0.210 ;
+      LAYER mcon ;
+        RECT 0.210 -0.090 0.380 0.080 ;
+        RECT 1.050 -0.090 1.220 0.080 ;
+      LAYER met1 ;
+        RECT -0.110 -0.240 1.570 0.240 ;
+    END
+  END VGND
+END sky130_inv
+END LIBRARY
+
+```
+
+
+
+</details>
+
+
+
+
