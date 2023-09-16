@@ -659,4 +659,19 @@ Or we can use the terminal comand:
 magic -d XR <filename>.mag
 ```
 
+Select a particular block to check the DRC check. using ```drc why``` .<br />
+We will use the following command in the tkcon window to see metal cut down.
+
+```
+cif see VIA2
+```
+![Screenshot from 2023-09-16 11-28-21](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/08529320-5525-4ac3-971f-b24b56ae6a04)
+
+
+## Load Syky130 tech rules for DRC challenges
+
+Here we will load the **poly.mag** file into Magic.
+Now we find the error by moving the cursor and find **box** area. We find out that Poly.9 is violated due to the spacing between polyres and poly.We need to fix this.<br />
+
+
 </details>
