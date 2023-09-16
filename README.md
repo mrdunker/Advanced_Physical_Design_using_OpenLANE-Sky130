@@ -709,6 +709,35 @@ We then load the new tech file in the tkcon window and do a DRC check.<br />
 
 ![Screenshot from 2023-09-16 12-03-50](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/0a613a99-ea66-4b06-aee6-f39feb96838f)
 
+###  Lab challenge exercise to describe DRC error as geometrical construct
+
+Here we are going to use magic to run nwell.mag and try to descrive the DRC error as a geometrical construct.<br />
+
+![Screenshot from 2023-09-16 12-27-03](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/7919cbf7-f3bf-4f4f-8d4b-8cd2d13e19de)
+
+We see in the sky130 tech file,templayer for the dnwell. This is a supporting layer for the output layer to get a proper output.<br />
+
+After loading the nwell.mag we are going to run the following commands and see the output result for the same.
+
+```
+cif  ostyle drc
+```
+![Screenshot from 2023-09-16 12-29-59](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/dd6ca46a-9610-4322-9aef-d11f90bc1990)
+
+```
+cif see dnwell_shrink
+```
+![Screenshot from 2023-09-16 12-30-23](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/7711975e-d759-4679-bf1e-01d485d24366)
+
+```
+feed clear
+```
+![Screenshot from 2023-09-16 12-31-16](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/ef5ffb99-5339-4e2b-bd82-c1ca9384fb74)
+```
+cif see nwell_missing
+feed clear
+```
+![Screenshot from 2023-09-16 12-31-31](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/037e2c93-b27c-470b-ab0f-a0dd1a5702a8)
 
 
 
