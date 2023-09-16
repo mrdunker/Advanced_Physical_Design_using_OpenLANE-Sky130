@@ -607,6 +607,56 @@ In the ngspice waveform we can note down the values and calculate the above para
 
 ```Cell Fall Delay : 4.076 - 4.0501 = 0.0259ns (25.9ps)```
 
+## LAB exercise and DRC Challenges
 
+### Introduction of Magic and Skywater DRC's
+
+Here the following are done:
+- In-depth overview of Magic DRC engine
+- Introduction to Google/Skywater DRC rules
+- Lab to warm up : Fixing a simple rule error
+- Lab of main excersise : Fixing or creating a complex error
+
+To know anything about magic use the following link:
+
+```
+http://opencircuitdesign.com/magic/
+```
+Majorly check out magic tutorails and magic command summary in the Using magic tab.<br />
+Also do check out the technlogy file manual in the technology files tab.<br />
+
+## Sky130s pdk intro and Steps to download labs
+
+To view the documentation of Skywater pdks use the link below:
+
+```
+https://skywater-pdk.readthedocs.io/en/main/
+```
+
+We can view the rules associated with it there.<br />
+
+We are downloading the packaged files to our local pc using the **wget** command. It stands for Web get . The following command is used.<br />
+
+``` wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz ```
+
+After this, extract it using the below command.
+
+```
+ tar xfz drc_tests.tgz
+```
+Once it is done. A drc_test folder is created in the directory which extraction is done.<br />
+cd to that folder and run Magic.For better graphic use, the command belwo is used:
+
+```
+magic -d XR
+```
+To load a mag file we can load it using File > Open > .mag from the magic window .<br />
+![Screenshot from 2023-09-16 11-00-51](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/c5b8d825-9b45-459e-ba4a-c0324a6c99f2)
+
+Or we can use the terminal comand:
+
+```
+magic -d XR <filename>.mag
+```
 
 </details>
