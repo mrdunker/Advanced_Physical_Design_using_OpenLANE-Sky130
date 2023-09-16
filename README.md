@@ -974,6 +974,39 @@ Below is the output obtained in magic:
 
 ### Introduction to Delay tables
 
+Delay is a parameter that has huge impact on our cells in the design. Delay decides each and 
+every other factor in timing. For a cell with different size, threshold voltages, delay model 
+table is created where we can it as timing table. Delay of a cell depends on input transition 
+and out load. Lets say two scenarios, we have long wire and the cell(X1) is sitting at the end 
+of the wire : the delay of this cell will be different because of the bad transition that 
+caused due to the resistance and capcitances on the long wire. we have the same cell sitting at 
+the end of the short wire: the delay of this will be different since the tarn is not that bad 
+comapred to the earlier scenario. Eventhough both are same cells, depending upon the input 
+tran, the delay got chaned. Same goes with o/p load also.
+<br />
+VLSI engineers have figured out some important rules for adding signal boosters to make sure 
+the signals stay strong. They've noticed that these boosters need to be a certain size, but 
+their speed can change depending on how much work they have to do. To deal with this, they came 
+up with the idea of "delay tables." These tables are like charts that show how fast the 
+boosters work based on the signal's starting speed and how much work they need to handle. These 
+charts help plan how the design should work.
+<br />
+In order to avoid large skew between endpoints of a clock treE:
+1. Buffers on the same level must have same capacitive load to ensure same timing delay or latency on the same level.
+2. Buffers on the same level must also be the same size (different buffer sizes -> different W/L ratio -> different resistance -> different RC constant -> different delay)
+
+![Screenshot from 2023-09-16 18-27-53](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/27a56c26-7f16-42eb-851c-7a5fa8a8f009)
+
+Buffers at various levels may have varying sizes and capacitive loads. However, if buffers at 
+the same level share the same size and load, the total delay for each path in the clock tree 
+will remain consistent, keeping the skew at zero. This implies that different levels will 
+exhibit differences in input transitions and output capacitive loads, leading to varying delays.
+<br />
+Delay tables, which are contained within the liberty file, are employed to record the timing 
+characteristics of each cell. The primary determinant of delay is the output slew, which, in 
+turn, is influenced by both the capacitive load and the input slew. The input slew, on the 
+other hand, is determined by the output capacitance load and input slew of the preceding 
+buffer, and it possesses its transition delay table.
 
 </details>
 
