@@ -1034,6 +1034,8 @@ equal to zero. If a negative slack is obtained, following steps may be followed:
 base.sdc is located in vsdstdcelldesigns/extras directory. So, I copied it into our design folder using
 ```cp my_base.sdc /home/emil/OpenLane/designs/picorv32a/src/```
 
+![Screenshot from 2023-09-16 19-34-42](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/638bd393-08f9-49b3-8851-aeecef655c30)
+
 Since there were no timing violations, I skipped this step.Since clock is propagated only once 
 we do CTS, In placement stage, clock is considered to be ideal. So only setup slack is taken 
 into consideration before CTS.<br />
@@ -1047,10 +1049,71 @@ Skew, jitter, and margin are all aspects that contribute to this uncertainty in 
 the clock signal.
 
 ```Clock Jitter : deviation of clock edge from its original position```
-
-
 	
 </details>
+
+<details>
+<summary>Clock tree synthesis TritonCTS and signal integrity</summary>
+
+ Clock Tree Synthesis (CTS) plays a vital role in the creation of integrated circuits (ICs), 
+ particularly in the realm of digital electronics, where precise timing is of utmost
+ importance. CTS involves the establishment of an organized network or structure of pathways 
+ for distributing the clock signal within the IC. This meticulous process guarantees that the 
+ clock signal effectively reaches all the sequential components, such as flip-flops and 
+ registers, in a synchronized and punctual fashion.
+
+ It can be implemeted in various ways and the choice of the specific technique depends on the 
+ design requirements, constraints, and goals.<br />
+ Some of the different types of approches to clock tree synthesis are:
+ - Balanced Tree CTS: The clock signal is spread out evenly, like branches of a tree. This helps ensure that all parts of the chip get the clock at about the same time, reducing timing problems. It's a straightforward method, but it might not save as much power as other methods.
+ - H-tree CTS: It is like a tree shape with the letter "H." It's great for spreading out clock signals across big chips. This tree structure helps make sure the timing is good and saves power, especially in large areas of the chip.
+ - Star CTS: In a star CTS, the clock signal is distributed from a single central point (like a star) to all the flip-flops. This approach simplifies clock distribution and minimizes clock skew but may require a higher number of buffers near the source.
+ - Mesh CTS: In a mesh CTS, clock wires are arranged in a mesh-like grid pattern, and each flip-flop is connected to the nearest available clock wire. It is often used in highly regular and structured designs, such as memory arrays. Mesh CTS can offer a balance between simplicity and skew minimization.
+ - Adaptive CTS: Adaptive CTS techniques adjust the clock tree structure dynamically based on the timing and congestion constraints of the design. This approach allows for greater flexibility and adaptability in meeting design goals but may be more complex to implement.
+
+### Crosstalk in VLSI
+
+Crosstalk in VLSI refers to unwanted interference or coupling between adjacent conductive 
+traces or wires on an integrated circuit (IC) or chip. It occurs when the electrical signals on 
+one wire influence or disrupt the signals on neighboring wires.Uncontrolled crosstalk can lead 
+to data corruption, timing violations, and increased power consumption. Mitigation: VLSI 
+designers employ various techniques to mitigate crosstalk, such as optimizing layout and 
+routing, using appropriate shielding, implementing proper clock distribution strategies, and 
+utilizing clock gating to reduce dynamic power consumption when logic is idle
+
+### Clock net sheilding in VLSI
+
+Clock net shielding in VLSI refers to a technique used to protect the clock signal from 
+interference or crosstalk. The clock signal is critical for synchronizing the operations of 
+various components on a chip, and any interference can lead to timing issues and performance 
+problems.<br />
+VLSI designers may use shielding techniques to isolate the clock network from other signals, 
+reducing the risk of interference. This can include dedicated clock routing layers, clock tree 
+synthesis algorithms, and buffer insertion to manage clock distribution more effectively. 
+<br />
+VLSI designs often have multiple clock domains. Shielding and proper clock gating help ensure 
+that clock signals do not propagate between domains, avoiding metastability issues and 
+maintaining synchronization.
+
+### CTS LAB
+
+The below command is used to run CTS in OpenLANE
+
+```
+run_cts 
+```
+![Screenshot from 2023-09-16 19-52-21](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/86eac546-e7f5-4412-8897-9531b0709506)
+
+<br />
+
+![Screenshot from 2023-09-16 19-54-25](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/a1037bc4-172a-4b1c-9d92-fb81eb9448d3)
+
+After CTS run, my slack values are ```setup:12.36, Hold:0.38```
+<br />
+Here also both values are not violating.<br />
+
+</details>
+
 
 
 
