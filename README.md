@@ -739,6 +739,14 @@ feed clear
 ```
 ![Screenshot from 2023-09-16 12-31-31](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/037e2c93-b27c-470b-ab0f-a0dd1a5702a8)
 
+It is important to know that the cif generations are very much resource using so it may slow down or even crash magic. So its best to use general DRC rules whenever possible and put the cif outputs in a seperate style varient which runs on demand.<br />
 
+DRC fast : intended for back end metal layer without checking layers below.<br />
+DFC full : It checks for the full layout considering it is relatively small.<br />
+
+![Screenshot from 2023-09-16 12-51-16](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/e20a85ff-b9ec-4cd5-9f28-72cea6d36064)
+
+
+cif drcs is a set of rules that check layers exaclty as they appear.There are several of these out of which cifwidthmax with the width of 0 is the most conveinent one to use.<br />
 
 </details>
