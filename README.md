@@ -673,5 +673,43 @@ cif see VIA2
 Here we will load the **poly.mag** file into Magic.
 Now we find the error by moving the cursor and find **box** area. We find out that Poly.9 is violated due to the spacing between polyres and poly.We need to fix this.<br />
 
+The polysilicon and polyres distance should be 22u bit is being shown as around 17u,and no errors. So we should go to the syk130 tech file and modify as below.<br />
+
+
+```
+after line
+*******************************************************
+spacing npres *nsd 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+*******************************************************
+we add one more line
+*******************************************************
+spacing npres allpolynonres 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+
+```
+
+```
+after line
+*******************************************************
+spacing xhrpoly,uhrpoly,xpc alldiff 480 touching_illegal \
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+*******************************************************
+we add one more line
+*******************************************************
+spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+
+```
+As shown below.<br />
+![Screenshot from 2023-09-16 12-04-23](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/37a1b77d-9091-4b09-a77d-0a7ae6ab7e7c)
+![Screenshot from 2023-09-16 12-04-08](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/a90b8117-0229-41e5-8f67-e91e0f9669f2)
+
+We then load the new tech file in the tkcon window and do a DRC check.<br />
+
+![Screenshot from 2023-09-16 12-03-50](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/0a613a99-ea66-4b06-aee6-f39feb96838f)
+
+
+
 
 </details>
