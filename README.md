@@ -1151,18 +1151,28 @@ post cts analysis is performed by operoad within the openlane flow
 
 ```
 openroad
-read_lef <path of merge.nom.lef>
-read_def <path of def>
+read_lef /home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.17_04.44.22/tmp/merged.nom.lef 
+read_def /home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.17_04.44.22/results/cts/picorv32.def 
+read_verilog /home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.17_04.44.22/results/synthesis/picorv32.v
 write_db pico_cts.db
 read_db pico_cts.db
-read_verilog
-/home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.16_13.22.02/results/synthesis/picorv32a.v
+read_verilog /home/emil/OpenLane/designs/picorv32a/runs/RUN_2023.09.17_04.44.22/results/synthesis/picorv32.v
+link_design picorv32
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 read_sdc /home/emil/OpenLane/designs/picorv32a/src/my_base.sdc
 set_propagated_clock (all_clocks)
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 ```
+
+### Hold Slack
+
+![Screenshot from 2023-09-17 10-21-55](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/7ec39dbe-8d6d-439f-a4c0-4dcd9a8a81d7)
+
+### Setup Slack
+
+![Screenshot from 2023-09-17 10-22-14](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/d44628b4-21e8-4bf5-b110-93b88391109b)
+
 
 </details>
 
