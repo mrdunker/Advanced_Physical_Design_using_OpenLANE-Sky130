@@ -1295,6 +1295,11 @@ run_routing
 ```
 
 ![Screenshot from 2023-09-17 16-11-18](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2c0a342c-5609-45f4-9427-c6d32b161b3f)
+<br />
+
+## Comparision between setup slack Pre vs Post routing
+
+![Screenshot from 2023-09-17 16-30-02](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/5a71ae81-bede-4d2e-8485-5fef23895913)
 
 
 </details>
