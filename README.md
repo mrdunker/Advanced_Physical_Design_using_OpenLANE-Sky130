@@ -1284,9 +1284,10 @@ In summary, TritonRoute is a sophisticated tool that not only performs initial d
 but also places a strong emphasis on optimizing routing within pre-processed route guides by 
 breaking down, merging, and bridging them as needed to achieve efficient and effective routing results.
 
+
 ### TritonRoute run for routing
 <br />
-Make sure the CURRENT_DEF is set to pdn.def<br />
+Make sure the current def is set to pdn.def<br />
 <br />
 Start routing by using
 
@@ -1366,7 +1367,7 @@ run_routing
 ## OpenLANE non-interactive flow
 
 ```
-cd Desktop/OpenLane 
+cd /home/emil/OpenLane 
 make mount
 ./flow.tcl -design picorv32a
 ```
