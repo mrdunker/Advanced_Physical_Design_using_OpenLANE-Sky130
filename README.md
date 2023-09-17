@@ -1213,10 +1213,43 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
  ### Design Rule Check
 
  Design rule checks are physical checks of metal width, pitch and spacing requirement for the 
- different layers which depend on different technology nodes.It verifies whether a design meets the predefined process technology rules given by the foundry for its manufacturing.
+ different layers which depend on different technology nodes.It verifies whether a design meets the predefined process technology rules given by the foundry for its manufacturing.<br />
 
+ The layout of a design must be in accordance with a set of predefined technology rules given 
+ by the foundry for manufacturability. After completion of the layout and its physical 
+ connection, an automatic program will check each and every polygon in the design against these 
+ design rules and report any violations.<br />
  
+![268457324-72931273-1da5-4031-a712-766239e59516](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/5ece676c-06fd-4ec5-92fa-49a545dbc5b0)
+
 </details>
+
+<details>
+<summary>Power Distribution Network Generation</summary>
+
+Unlike the general ASIC flow, Power Distribution Network generation is not a part of floorplan 
+run in OpenLANE. PDN must be generated after CTS and post-CTS STA analyses:
+
+we can check whether PDN has been created or no by check the current def environment variable:  ```echo $::env(CURRENT_DEF)```
+
+![Screenshot from 2023-09-17 14-18-13](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/73821f80-aae2-4cee-a41d-db557cd63bf0)
+
+![Screenshot from 2023-09-17 14-21-54](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/fcb9d3cc-800e-4f7e-8ed6-b3dd10192a39)
+
+- **gen_pdn** Generates the power distribution network.
+- The power distribution network has to take the design_cts.def as the input def file.
+- Power rings,strapes and rails are created by PDN.
+- From VDD and VSS pads, power is drawn to power rings.
+- Next, the horizontal and vertical strapes connected to rings draw the power from strapes.
+- Stapes are connected to rings and these rings are connected to std cells. So, standard cells get power from rails.
+- here are definitions for the straps and the rails. In this design, straps are at metal layer 4 and 5 and the standard cell rails are at the metal layer 1. Vias connect accross the layers as required.
+
+  ![268351074-ced030b9-e887-4417-a9bd-039287ed88e5](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/a71cf1bb-fd37-415b-be51-8e0ef1a212ac)
+
+</details>
+
+
+
 
 
 
