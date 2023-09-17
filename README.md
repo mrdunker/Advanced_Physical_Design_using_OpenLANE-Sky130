@@ -847,9 +847,13 @@ lef write // if no name is specified it will be the same name as mag file
 This creates the file below:<br />
 
 ```
-MACRO sky130_inv
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO sky130_vsdinv
   CLASS CORE ;
-  FOREIGN sky130_inv ;
+  FOREIGN sky130_vsdinv ;
   ORIGIN 0.000 0.000 ;
   SIZE 1.380 BY 2.720 ;
   SITE unithd ;
@@ -907,7 +911,7 @@ MACRO sky130_inv
         RECT -0.110 -0.240 1.570 0.240 ;
     END
   END VGND
-END sky130_inv
+END sky130_vsdinv
 END LIBRARY
 
 ```
@@ -1173,8 +1177,15 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 ![Screenshot from 2023-09-17 10-22-14](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/d44628b4-21e8-4bf5-b110-93b88391109b)
 
-
 </details>
+
+## Day 5:Final steps for RTL2GDS using tritonRoute and OpenSTA
+
+<details>
+<summary>Maze routing and Lee's Algorithm</summary>
+	
+</details>
+
 
 
 
