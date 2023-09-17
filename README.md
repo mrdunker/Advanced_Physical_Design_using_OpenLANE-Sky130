@@ -1303,7 +1303,44 @@ run_routing
 
 ![Screenshot from 2023-09-17 16-40-37](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/daeeaa05-3b52-4fa5-9aa3-295fe66cddcd)
 
+## Openlane Interactive flow:
+
+```
+cd /home/emil/OpenLane/
+
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+detailed_placement
+run_cts
+gen_pdn
+run_routing
+
+```
+## OpenLANE non-interactive flow
+
+```
+cd Desktop/OpenLane 
+make mount
+./flow.tcl -design picorv32a
+```
+
 </details>
+
+## Acknowledgement
+
+- Kunal Ghosh,VSD Corp.Pvt.Ltd.
+- ChatGPT
+- Alwin Shaju,Colleague IIIT-B
+- N Sai Sampath,IIIT-B
+
+## Reference
+
+- https://www.vsdiat.com
+- https://github.com/Devipriya1921/Physical_Design_Using_OpenLANE_Sky130
+- https://github.com/nickson-jose/vsdstdcelldesign
 
 
 
