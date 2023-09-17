@@ -1279,6 +1279,23 @@ Key Features:
   	- Guide Bridging
   	- Assumes route guide for each net satisfy inter guide connectivity Same metal layer with touching guides or neighbouring metal layers with nonzero vertically overlapped area
 
+![268459474-0a04cd46-e387-4f1c-90e2-cce87d0c861e](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/81dbdb7a-f9cf-4997-9013-52c6b42f9023)
+
+In summary, TritonRoute is a sophisticated tool that not only performs initial detail routing 
+but also places a strong emphasis on optimizing routing within pre-processed route guides by 
+breaking down, merging, and bridging them as needed to achieve efficient and effective routing results.
+
+### TritonRoute run for routing
+<br />
+Make sure the CURRENT_DEF is set to pdn.def<br />
+<br />
+Start routing by using
+```
+run_routing
+```
+
+![Screenshot from 2023-09-17 16-11-18](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2c0a342c-5609-45f4-9427-c6d32b161b3f)
+
 
 </details>
 
