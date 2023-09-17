@@ -699,7 +699,6 @@ we add one more line
 *******************************************************
 spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
 	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
-
 ```
 As shown below.<br />
 ![Screenshot from 2023-09-16 12-04-23](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/37a1b77d-9091-4b09-a77d-0a7ae6ab7e7c)
@@ -769,7 +768,6 @@ cd to the particular location and open the file.<br />
 
 ```
 cd .volare/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info
-
 ```
 The content of the file are:
 
@@ -913,7 +911,6 @@ MACRO sky130_vsdinv
   END VGND
 END sky130_vsdinv
 END LIBRARY
-
 ```
 ### Integrating custom cell in OpenLANE
 
@@ -965,7 +962,6 @@ To check the layout invoke magic from the directory:
 
 ```
 magic -T /home/emil/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read picorv32.def &
-
 ```
 
 Below is the output obtained in magic:
@@ -1024,7 +1020,6 @@ flow as follows:
 
 ```
 sta pre_sta.conf
-
 ```
 Since clock tree synthesis has not been performed yet, the analysis is with respect to ideal 
 clocks and only setup time slack is taken into consideration. The slack value is the difference 
@@ -1165,7 +1160,6 @@ read_liberty $::env(LIB_SYNTH_COMPLETE)
 read_sdc /home/emil/OpenLane/designs/picorv32a/src/my_base.sdc
 set_propagated_clock (all_clocks)
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
-
 ```
 
 ### Hold Slack
@@ -1235,7 +1229,6 @@ we can check whether PDN has been created or no by check the current def environ
 ```
 prep -design picorv32a -tag <RUN file name>
 gen_pdn
-
 ```
 
 ![Screenshot from 2023-09-17 14-18-13](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/73821f80-aae2-4cee-a41d-db557cd63bf0)
@@ -1362,7 +1355,6 @@ detailed_placement
 run_cts
 gen_pdn
 run_routing
-
 ```
 ## OpenLANE non-interactive flow
 
@@ -1378,8 +1370,8 @@ make mount
 
 - Kunal Ghosh,VSD Corp.Pvt.Ltd.
 - ChatGPT
-- Alwin Shaju,Colleague IIIT-B
-- N Sai Sampath,IIIT-B
+- Alwin Shaju,Colleague,IIIT-B
+- N Sai Sampath,Colleague,IIIT-B
 
 ## Reference
 
