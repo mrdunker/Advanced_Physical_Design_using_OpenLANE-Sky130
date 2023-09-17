@@ -1233,6 +1233,12 @@ run in OpenLANE. PDN must be generated after CTS and post-CTS STA analyses:
 
 we can check whether PDN has been created or no by check the current def environment variable:  ```echo $::env(CURRENT_DEF)```
 
+```
+prep -design picorv32a -tag <RUN file name>
+gen_pdn
+
+```
+
 ![Screenshot from 2023-09-17 14-18-13](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/73821f80-aae2-4cee-a41d-db557cd63bf0)
 
 ![Screenshot from 2023-09-17 14-21-54](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/fcb9d3cc-800e-4f7e-8ed6-b3dd10192a39)
@@ -1258,9 +1264,22 @@ and commercial EDA tools, the routing process is exceptionally intricate due to 
 space. To simplify this complexity, the routing procedure is typically divided into two 
 distinct stages: Global Routing and Detailed Routing.<br />
 
+There are two kinds of routing:
+1. Global Routing: In this stage, the routing region is subdivided into rectangular grid cells and represented as a coarse 3D routing graph. This task is accomplished by the "FASTE ROUTE" engine.
+2. Detailed Routing: Here, finer grid granularity and routing guides are employed to implement the physical wiring. The "tritonRoute" engine comes into play at this stage. "Fast Route" generates initial routing guides, while "Triton Route" utilizes the Global Route information and further refines the routing, employing various strategies and optimizations to determine the most optimal path for connecting the pins
+
+### Trion Route
+
+Key Features:
+- **Initial Detail Routing**: TritonRoute initiates the detailed routing process, providing the foundation for the subsequent routing steps.
+- **Adherence to Pre-Processed Route Guides**:TritonRoute places significant emphasis on following pre-processed route guides. This involves several actions:
+  	- Initial Route Guide Analysis
+  	- Guide Splitting
+  	- Guide Merging
+  	- Guide Bridging
+  	- Assumes route guide for each net satisfy inter guide connectivity Same metal layer with touching guides or neighbouring metal layers with nonzero vertically overlapped area
 
 
-	
 </details>
 
 
