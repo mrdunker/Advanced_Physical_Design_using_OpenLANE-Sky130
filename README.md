@@ -1213,7 +1213,8 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
  ### Design Rule Check
 
  Design rule checks are physical checks of metal width, pitch and spacing requirement for the 
- different layers which depend on different technology nodes.It verifies whether a design meets the predefined process technology rules given by the foundry for its manufacturing.<br />
+ different layers which depend on different technology nodes.It verifies whether a design meets 
+ the predefined process technology rules given by the foundry for its manufacturing.<br />
 
  The layout of a design must be in accordance with a set of predefined technology rules given 
  by the foundry for manufacturability. After completion of the layout and its physical 
@@ -1226,7 +1227,7 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 <details>
 <summary>Power Distribution Network Generation</summary>
-
+<br />
 Unlike the general ASIC flow, Power Distribution Network generation is not a part of floorplan 
 run in OpenLANE. PDN must be generated after CTS and post-CTS STA analyses:
 
@@ -1246,6 +1247,20 @@ we can check whether PDN has been created or no by check the current def environ
 
   ![268351074-ced030b9-e887-4417-a9bd-039287ed88e5](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/a71cf1bb-fd37-415b-be51-8e0ef1a212ac)
 
+</details>
+
+<details>
+<summary>Routing</summary>	
+<br />
+	
+In the realm of routing within Electronic Design Automation (EDA) tools, such as both OpenLANE 
+and commercial EDA tools, the routing process is exceptionally intricate due to the vast design 
+space. To simplify this complexity, the routing procedure is typically divided into two 
+distinct stages: Global Routing and Detailed Routing.<br />
+
+
+
+	
 </details>
 
 
