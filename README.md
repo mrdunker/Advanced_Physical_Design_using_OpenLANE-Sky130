@@ -1294,6 +1294,33 @@ Start routing by using
 run_routing
 ```
 
+<br />
+The .json file used here is: 
+
+```
+{
+  "DESIGN_NAME": "picorv32",
+  "VERILOG_FILES": "dir::src/picorv32a.v",
+  "CLOCK_PORT": "clk",
+  "CLOCK_NET": "clk",
+  "FP_SIZING": "relative",
+  "LIB_SYNTH" : "dir::src/sky130_fd_sc_hd__typical.lib",
+  "LIB_FASTEST" : "dir::src/sky130_fd_sc_hd__fast.lib",
+  "LIB_SLOWEST" : "dir::src/sky130_fd_sc_hd__slow.lib",
+  "LIB_TYPICAL":"dir::src/sky130_fd_sc_hd__typical.lib",
+  "TEST_EXTERNAL_GLOB":"dir::/src/*",
+  "SYNTH_DRIVING_CELL":"sky130_vsdinv",
+  "pdk::sky130*": {
+    "FP_CORE_UTIL": 35,
+    "CLOCK_PERIOD": 24,
+    "scl::sky130_fd_sc_hd": {
+      "FP_CORE_UTIL": 30
+    }
+  }
+}
+
+```
+
 ![Screenshot from 2023-09-17 16-11-18](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/2c0a342c-5609-45f4-9427-c6d32b161b3f)
 <br />
 
@@ -1302,6 +1329,23 @@ run_routing
 ![Screenshot from 2023-09-17 16-30-02](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/5a71ae81-bede-4d2e-8485-5fef23895913)
 
 ![Screenshot from 2023-09-17 16-40-37](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/daeeaa05-3b52-4fa5-9aa3-295fe66cddcd)
+
+## Layout in magic tool post routing:
+
+![Screenshot from 2023-09-17 18-33-37](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/fbaab488-dda8-4ddf-8a2b-616ebb8fefea)
+
+## Post-synthesis flip flop to standard cell ratio
+
+```
+flip-flop to standard cell ratio = 1596/9819 = 0.16
+```
+
+![Screenshot from 2023-09-17 18-38-04](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/542828bb-03ba-4630-af95-89aa9295dd50)
+
+## Post-synthesis Gate count
+
+![Screenshot from 2023-09-17 18-42-34](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/20ef29b7-7466-4ac1-9e3a-0ed0715bc377)
+
 
 ## Openlane Interactive flow:
 
