@@ -1302,6 +1302,7 @@ run_routing
 
 ![Screenshot from 2023-09-17 16-30-02](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/5a71ae81-bede-4d2e-8485-5fef23895913)
 
+![Screenshot from 2023-09-17 16-40-37](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/daeeaa05-3b52-4fa5-9aa3-295fe66cddcd)
 
 </details>
 
