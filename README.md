@@ -1,6 +1,21 @@
 # Advanced_Physical_Design_using_OpenLANE-Sky130
 This repository is made to document the coursework done under Kunal Ghosh for ASICs and covers Advanced Physical Design using OpenLane and Sky130.
 
+
+[Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK](#day-1)
+
+[Day 2: Good floorplan vs. Bad floorplan and introduction to library cells](#day-2)
+
+[Day 3: Design Library Cell using magic layout and ngspice Characterizations](#day-3)
+
+[Day 4: Pre-layout timing analysis and importance of good clock tree](#day-4)
+
+[Day-5 : Final steps for RTL2GDS using tritonRoute and openSTA](#day-5)
+
+[Acknowledgement](#acknowledgement)
+
+[Reference](#reference)
+
 ## Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
 <details>
   <summary>Introduction to RISC-V</summary>
