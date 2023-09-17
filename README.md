@@ -1172,7 +1172,7 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 </details>
 
-## Day 5:Final steps for RTL2GDS using tritonRoute and OpenSTA
+## Day 5: Final steps for RTL2GDS using TritonRoute and OpenSTA
 
 <details>
 <summary>Maze routing and Lee's Algorithm</summary>
