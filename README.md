@@ -1183,7 +1183,39 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 <details>
 <summary>Maze routing and Lee's Algorithm</summary>
-	
+
+ Routing is the process of establishing a physical connection between two pins. Algorithms 
+ designed for routing take source and target pins and aim to find the most efficient path 
+ between them, ensuring a valid connection exists.<br />
+
+ The Maze Routing algorithm, such as the Lee algorithm, is one approach for solving routing 
+ problems.Here a grid similar to the one created during cell customization is utilized for 
+ routing purposes.<br />
+ The Lee algorithm starts with two designated points, the source and target, and leverages the
+ routing grid to identify the shortest or optimal route between them.<br />
+
+ Lee's Algorithm has its limitations. It can be time consuming when dealing with millions of 
+ pins.It essentially constructs a maze and then numbers its cells from the source to the target.
+ here are alternative algorithms that address similar routing challenges.<br />
+
+ Here in this case he shortest path is one that follows a steady increment of one.There might 
+ be multiple paths, but the best path that the tool will choose is one with less bends.The 
+ route should not be diagonal and must not overlap an obstruction such as macros. The Lee 
+ algorithm prioritizes selecting the best path, typically favoring L-shaped routes over 
+ zigzags. If no L-shaped paths are available, it may resort to zigzag routes. This approach is 
+ particularly valuable for global routing tasks.<br />
+ 
+ This algorithm however has high run time and consume a lot of memory thus more optimized 
+ routing algorithm is preferred .
+
+ ![Screenshot from 2023-09-17 11-22-59](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/d3b5d913-42eb-49c1-93e4-1a8e35cdc7a1)
+
+ ### Design Rule Check
+
+ Design rule checks are physical checks of metal width, pitch and spacing requirement for the 
+ different layers which depend on different technology nodes.It verifies whether a design meets the predefined process technology rules given by the foundry for its manufacturing.
+
+ 
 </details>
 
 
