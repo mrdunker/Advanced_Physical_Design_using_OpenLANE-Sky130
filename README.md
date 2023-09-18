@@ -838,7 +838,7 @@ port use signal
 Port Y:
 ```
 port class output
-port class signal
+port use signal
 ```
 VPWR area:
 ```
