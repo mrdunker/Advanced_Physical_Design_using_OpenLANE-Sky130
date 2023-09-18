@@ -984,7 +984,8 @@ Below is the output obtained in magic:
 
 ![Screenshot from 2023-09-16 18-05-01](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/1278d844-c5d7-41df-9032-9100fb07194f)
 
-![Screenshot from 2023-09-17 18-18-17](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/c906e83d-2484-41af-8761-99216eb706c2)
+![Screenshot from 2023-09-17 15-27-23](https://github.com/mrdunker/Advanced_Physical_Design_using_OpenLANE-Sky130/assets/38190245/eeafee8b-1d04-44fc-9dff-96b7023cf2b3)
+
 
 ### Introduction to Delay tables
 
